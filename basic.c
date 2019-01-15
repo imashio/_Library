@@ -40,14 +40,3 @@ int StrLength(const char *s){
     return (n);
 }
 
-
-// flag
-unsigend int    flag=0;
-
-void set_flag(){
-    flag = 1;
-}
-
-unsigned int read_flag(){
-    return flag;
-}

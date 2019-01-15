@@ -1,16 +1,6 @@
-/*
- * flag.c
- *
- *  Created on: Jan 29, 2018
- *      Author: imashio
- */
+#include "flag.h"
 
-unsigend int    flag=0;
-
-void set_flag(){
-    flag = 1;
-}
-
-unsigned int read_flag(){
-    return flag;
-}
+unsigned int flag_disp = 0;
+unsigned int flag_meas_short = 0;
+unsigned int flag_meas_long = 0;
+unsigned int flag_com = 0;
