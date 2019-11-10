@@ -7,12 +7,6 @@
 
 #include "u8g2.h"		// graphic display library
 
-// for debug
-#include "usart.h"
-#include "usart_transmit_printf.h"
-UART_HandleTypeDef huart2;
-// for debug
-
 #define font_width	4
 #define font_height	6
 #define	label_width	24
@@ -47,11 +41,6 @@ void draw_Wave_axis(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t h
 	// value axis
  	for(uint8_t n=0;n<=3;n++){
 		draw_Value_xs(u8g2, x, (int)(box_y+box_height-norm_gain*(float)(value_max-value_min)/3*n-font_height/2 ), label_width, 8, (int)((float)(value_max-value_min)/3*n+value_min), 3, 1, 1, "");
-		// debug
-		HAL_Delay(1);
-		HAL_UART_Transmit_printf(&huart2, "%d\n", (int)(box_y+box_height-norm_gain*(float)(value_max-value_min)/3*n-font_height/2) );
-		HAL_Delay(1);
-		// debug
 	}
 	u8g2_DrawFrame(u8g2, box_x-1, box_y-1, box_width+2, box_height+2 );
 }
@@ -94,13 +83,5 @@ void draw_Wave(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height
 			u8g2_DrawLine(u8g2, box_x+box_width-(n-1), box_y+box_height-norm_value[n-1]-1 , box_x+box_width-n, box_y+box_height-norm_value[n]-1);
 		}
 	}
-
-	// debug
-	uint16_t n=width-label_width-1;
-	HAL_UART_Transmit_printf(&huart2, "%d, %d - %d --- ", box_x+box_width-(n-1), box_y+box_height-norm_value[n-1], norm_value[n] );
-	HAL_Delay(10);
-	HAL_UART_Transmit_printf(&huart2, "%d, %d - %d\n", box_x+box_width-n, box_y+box_height-norm_value[n], norm_value[n] );
-	HAL_Delay(10);
-	// debug
 
 }
