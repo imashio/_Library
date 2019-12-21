@@ -2,13 +2,22 @@
 #include "main.h"
 #include "stm32f3xx_hal.h"
 
+// Count character length
+int StrLength(const char *s){
+    uint8_t n = 0;
+    while (*s++ != '\0')
+        n++;
+    return (n);
+}
+
+
+
+// SYSTICK delay (DO NOT USE with intteruput)
 __IO uint32_t DelayCnt;
 uint32_t Cnt_ms;
 uint32_t Cnt_us;
 uint32_t Cnt_100ns;
 
-
-// delay
 void delayInit(void)
 {
   uint32_t freq;
@@ -31,12 +40,4 @@ void delay_ms(uint32_t t_ms)
 	while( DelayCnt != 0 );
 }
 
-
-// Count character length
-int StrLength(const char *s){
-    uint8_t n = 0;
-    while (*s++ != '\0')
-        n++;
-    return (n);
-}
 
