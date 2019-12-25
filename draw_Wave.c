@@ -40,7 +40,7 @@ void draw_Wave_axis(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t h
 
 	// value axis
  	for(uint8_t n=0;n<=3;n++){
-		draw_Value_xs(u8g2, x, (int)(box_y+box_height-norm_gain*(float)(value_max-value_min)/3*n-font_height/2 ), label_width, 8, (int)((float)(value_max-value_min)/3*n+value_min), 3, 1, 1, "");
+		draw_Value_xs(u8g2, x, (int)(box_y+box_height-norm_gain*(float)(value_max-value_min)/3*n-font_height/2 ), label_width, 8, (int)((float)(value_max-value_min)/3*n+value_min), 3, 2, 1, "");
 	}
 	u8g2_DrawFrame(u8g2, box_x-1, box_y-1, box_width+2, box_height+2 );
 }

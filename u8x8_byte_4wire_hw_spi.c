@@ -23,7 +23,7 @@ uint8_t u8x8_byte_4wire_hw_spi(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void 
 				byte = *data;
 				data++;
 				arg_int--;
-				HAL_SPI_Transmit(&hspi1, &byte, 1, 100);
+				HAL_SPI_Transmit(&hspi1, &byte, 1, 10);
 			}
 			break;
 

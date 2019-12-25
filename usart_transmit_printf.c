@@ -10,7 +10,7 @@
 
 
 void USART_puts(USART_TypeDef* uartHandle,const char *s){
-  HAL_UART_Transmit( uartHandle, s, strlen( s ), 10);
+  HAL_UART_Transmit( uartHandle, s, strlen( s ), 50);
 }
 
 
