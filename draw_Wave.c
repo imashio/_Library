@@ -19,16 +19,43 @@ uint8_t box_height;
 float 		norm_gain;
 int			norm_offset;
 
-void draw_Wave_axis(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, int16_t value_min, int16_t value_max){
+void draw_Wave_axis(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, int16_t value_min, int16_t value_max, uint8_t N_tick){
+
+	// *u8g2		u8g2 pointer
+	// x			wave x-position
+	// y			wave y-position
+	// width		wave area width
+	// height		wave area height
+	// value_min	min wave value
+	// value_max	max wave value
+
+	box_x = x+label_width;
+	box_y = y+font_height/2;
+	box_width = width-label_width - 2; // '2' is Line-width
+	box_height = height-font_height - 2; // '2' is Line-width
+
+	norm_gain = (float)(box_height)/(float)(value_max-value_min); // Normalize coefficient
+	norm_offset = value_min;		// Normalize offset
+
+
+	// value axis
+ 	for(uint8_t n=0;n<=N_tick;n++){
+		draw_Value_xs(u8g2, x, (int)(box_y+box_height-norm_gain*(float)(value_max-value_min)/N_tick*n-font_height/2 ), label_width, 8, (int)((float)(value_max-value_min)/N_tick*n+value_min), 3, 2, 1, "");
+	}
+	u8g2_DrawFrame(u8g2, box_x-1, box_y-1, box_width+2, box_height+2 );
+}
+
 /*
-	*u8g2		u8g2 pointer
-	x			wave x-position
-	y			wave y-position
-	width		wave area width
-	height		wave area height
-	value_min	min wave value
-	value_max	max wave value
-*/
+void draw_Wave_axis(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, int16_t value_min, int16_t value_max){
+
+	// *u8g2		u8g2 pointer
+	// x			wave x-position
+	// y			wave y-position
+	// width		wave area width
+	// height		wave area height
+	// value_min	min wave value
+	// value_max	max wave value
+
 	box_x = x+label_width;
 	box_y = y+font_height/2;
 	box_width = width-label_width - 2; // '2' is Line-width
@@ -44,6 +71,7 @@ void draw_Wave_axis(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t h
 	}
 	u8g2_DrawFrame(u8g2, box_x-1, box_y-1, box_width+2, box_height+2 );
 }
+*/
 
 void draw_Wave(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t height, int16_t value_min, int16_t value_max, int16_t *value, uint16_t index){
 /*
