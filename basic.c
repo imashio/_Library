@@ -10,7 +10,15 @@ int StrLength(const char *s){
     return (n);
 }
 
-
+// substring
+int subStr( char *str_out, const char *str_in, unsigned int pos, unsigned int len ){
+    if( pos < 0 || len < 0 || len > strlen(str_in) )
+        return -1;
+    for( str_in += pos; *str_in != '\0' && len > 0; len-- )
+        *str_out++ = *str_in++;
+    *str_out = '\0';
+    return 0;
+}
 
 // SYSTICK delay (DO NOT USE with intteruput)
 __IO uint32_t DelayCnt;
