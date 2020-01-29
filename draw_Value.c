@@ -13,7 +13,8 @@
 #define	meas_unit_font		u8g2_font_4x6_tf
 #define	meas_unit_font_b	u8g2_font_7x14B_tf
 #define	meas_value_font		u8g2_font_7x14B_tf
-#define	meas_value_font_b	u8g2_font_logisoso16_tf
+#define	meas_value_font_b	u8g2_font_10x20_tn
+//#define	meas_value_font_b	u8g2_font_logisoso16_tf // display BUG
 #define	meas_value_font_s	u8g2_font_6x10_tf
 #define	meas_value_font_xs	u8g2_font_5x8_tf
 
@@ -123,7 +124,7 @@ void draw_Value_b(u8g2_t *u8g2, uint8_t x, uint8_t y, uint8_t width, uint8_t hei
 
 	u8g2_SetFont(u8g2, meas_value_font_b);
 
-	str_offset = (width-1) - ( StrLength(unit)*7 + ((sign!=0)+digit)*font_width_b + ((frac!=0)*font_width_b>>1) + 1 );
+	str_offset = (width-1) - ( StrLength(unit)*font_width_b + ((sign!=0)+digit)*font_width_b + ((frac!=0)*font_width_b>>1) + 1 );
 
 	// erase blank space
 	u8g2_SetDrawColor(u8g2, 0); // erase color
